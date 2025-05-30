@@ -1,0 +1,88 @@
+body {
+    display: flex;
+    flex-direction: column; /* Arrange elements vertically */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* Light background for sparkles */
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A more modern font */
+    overflow: hidden; /* Prevent scrollbars due to canvas */
+    position: relative;
+    color: #333; /* Darker text color for light theme */
+}
+
+#sparkle-canvas {
+    position: fixed; /* Fixed to cover the whole viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Place behind the clock */
+}
+
+.clock {
+    width: 300px;
+    height: 300px;
+    border: 10px solid #222; /* Darker border to match deep black */
+    border-radius: 50%;
+    position: relative;
+    background-color: #000; /* Deep black clock face */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4); /* Stronger shadow for black clock */
+    z-index: 1; /* Ensure the clock is on top of sparkles */
+    margin-bottom: 20px; /* Space between clock and digital time */
+}
+
+.clock::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: #aaa; /* Lighter center dot for contrast */
+    border-radius: 50%;
+    z-index: 10; /* Ensure the center dot is on top of hands */
+}
+
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom; /* Rotate from the base of the hand */
+    transform: translateX(-50%) rotate(0deg); /* Center horizontally and initial rotation */
+    border-radius: 5px;
+    z-index: 2; /* Ensure hands are above the clock face */
+    transition: transform 0.05s cubic-bezier(0.4, 2.3, 0.6, 1); /* Smooth transition for hands, especially second hand */
+}
+
+.hour-hand {
+    width: 6px;
+    height: 80px;
+    background-color: #f8f8f8; /* Very light color for hour hand on black background */
+    margin-left: -3px;
+}
+
+.minute-hand {
+    width: 4px;
+    height: 110px;
+    background-color: #e0e0e0; /* Light color for minute hand on black background */
+    margin-left: -2px;
+}
+
+.second-hand {
+    width: 2px;
+    height: 130px;
+    background-color: #FF4500; /* Bright orange-red for the second hand */
+    margin-left: -1px;
+}
+
+.digital-time {
+    font-size: 1.5em; /* Larger font size */
+    font-weight: bold;
+    color: #333; /* Dark text for readability on light background */
+    text-align: center;
+    white-space: nowrap; /* Prevent line breaks */
+    z-index: 1; /* Ensure it's above sparkles */
+}
